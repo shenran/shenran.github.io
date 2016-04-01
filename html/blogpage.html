@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="customersCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title ng-model="Title">{{Title}}</title>
+    <script lang="javascript" src="../lib/angular.min.js"></script>
+    <script lang="javascript" src="../script/githubtools.js"></script>
+    <script src="../script/tools.js"></script>
+        <script>
+        var app = angular.module('myApp', []);
+        var BlogTitle=getQueryString("blog");
+
+        $http.get(getHttpFiles("md/"+BlogTitle+".md"))
+                .success(function(response) {
+                    var fileInfo = response;
+                    $scope.Title=response.name.Substring(0,response.name.Length-3)
+                    $http.get(fileInfo.download_url)
+                            .success(
+                                    function (response)
+                            {
+
+                                var html_content = markdown.toHTML( response );
+                                $scope.content=html_content;
+                            })
+                    });
+
+    </script>
+</head>
+<body>
+<div ng-model="content">{{content}}</div>
+</body>
+</html>

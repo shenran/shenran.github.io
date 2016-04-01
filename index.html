@@ -22,7 +22,9 @@
       <div ng-app="myApp" ng-controller="customersCtrl">
 
         <li ng-repeat="article in files">
-          {{ article.name  }}
+          <a href="html/blogpage.html?blog={{ article.name.substr(0,article.name.length-3);}}">{{
+           article.name.substr(0,article.name.length-3);
+           }}</a>
         </li>
 
       </div>
