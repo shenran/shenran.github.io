@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp" ng-controller="customersCtrl">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <title ng-model="Title">{{Title}}</title>
+    <title ></title>
     <script lang="javascript" src="../lib/angular.min.js"></script>
     <script lang="javascript" src="../script/githubtools.js"></script>
     <script src="../script/tools.js"></script>
-        <script>
+    <script>
         var app = angular.module('myApp', []);
         var BlogTitle=getQueryString("blog");
+        document.title = decodeURIComponent(BlogTitle);
 
-        $http.get(getHttpFiles("md/"+BlogTitle+".md"))
-                .success(function(response) {
-                    var fileInfo = response;
-                    $scope.Title=response.name.Substring(0,response.name.Length-3)
-                    $http.get(fileInfo.download_url)
-                            .success(
-                                    function (response)
-                            {
-
-                                var html_content = markdown.toHTML( response );
-                                $scope.content=html_content;
-                            })
-                    });
+        var app = angular.module('myApp', []);
+        httpget(app,getHttpFiles("md/"+BlogTitle+".md"),"download");
 
     </script>
 </head>
 <body>
-<div ng-model="content">{{content}}</div>
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+   <p ng-model="blog"> {{blog}}</p>
+    <p ng-model="download">{{download.download_url}}</p>
+</div>
 </body>
 </html>

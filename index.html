@@ -10,7 +10,11 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <script lang="javascript" src="lib/angular.min.js"></script>
     <script lang="javascript" src="script/githubtools.js"></script>
-    <script src="run/run.js"></script>
+    <script src="script/tools.js"></script>
+    <script>
+      var app = angular.module('myApp', []);
+      httpget(app,getHttpFiles("md"),"files");
+    </script>
   </head>
   <body>
     <section class="page-header">
@@ -22,7 +26,7 @@
       <div ng-app="myApp" ng-controller="customersCtrl">
 
         <li ng-repeat="article in files">
-          <a href="html/blogpage.html?blog={{ article.name.substr(0,article.name.length-3);}}">{{
+          <a href="html/blogpage.html?blog={{ article.name.substr(0,article.name.length-3);}}&ng=1">{{
            article.name.substr(0,article.name.length-3);
            }}</a>
         </li>
