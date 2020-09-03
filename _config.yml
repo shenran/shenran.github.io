@@ -1,0 +1,8 @@
+title: Shenran.GitHub.io
+description: 小小堂
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
